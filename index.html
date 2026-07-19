@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shreeyash Serverless App</title>
+    <style>
+        body { font-family: Arial; text-align: center; padding: 50px; background: #f0f0f0; }
+        button { padding: 15px 30px; font-size: 18px; background: #4CAF50; color: white; border: none; border-radius: 8px; cursor: pointer; }
+        button:hover { background: #45a049; }
+        #result { margin-top: 30px; font-size: 20px; font-weight: bold; min-height: 50px; }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Shreeyash's Serverless Website</h1>
+    <p>Direct S3 Hosting + Lambda + API Gateway</p>
+   
+    <button onclick="sendData()">Submit Form</button>
+    <p id="result"></p>
+    <script>
+        async function sendData() {
+            const apiURL = "https://abc123.execute-api.ap-south-1.amazonaws.com/dev/submit"; // ← HERE PASTE YOUR INVOKE URL.
+            const payload = {
+                name: "Shreeyash",
+                message: "Hello from direct S3 website!"
+            };
+            try {
+                const response = await fetch(apiURL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await response.json();
+                document.getElementById("result").innerHTML =
+                    `<span style="color:green;">${data}</span>`;
+            } catch (error) {
+                console.error(error);
+                document.getElementById("result").innerHTML =
+                    `<span style="color:red;">Error: CORS ya URL check kar bhai</span>`;
+            }
+        }
+    </script>
+</body>
+</html>
