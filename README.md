@@ -270,7 +270,7 @@ Return HTTP 200
 # 📤 Sample Response
 
 ```json
-"Bhai Shreeyash, tera form successfully submit ho gaya hai! 🎉"
+""Hi Shreeyash, your form has been submitted successfully! 🎉""
 ```
 
 ---
